@@ -47,7 +47,11 @@ INSERT INTO pets VALUES (11, 'Freddy', '2010-03-09', 5, 9);
 INSERT INTO pets VALUES (12, 'Lucky', '2010-06-24', 2, 10);
 INSERT INTO pets VALUES (13, 'Sly', '2012-06-08', 1, 10);
 
-INSERT INTO visits VALUES (1, 7, '2013-01-01', 'rabies shot');
-INSERT INTO visits VALUES (2, 8, '2013-01-02', 'rabies shot');
-INSERT INTO visits VALUES (3, 8, '2013-01-03', 'neutered');
-INSERT INTO visits VALUES (4, 7, '2013-01-04', 'spayed');
+INSERT INTO visits VALUES (1, 7, '2013-01-01', 'rabies shot', 'Helen Leary', '', 'sick', true);
+INSERT INTO visits VALUES (2, 13, '2013-01-02', 'rabies shot', '', '', '', false);
+INSERT INTO visits VALUES (3, 9, '2013-01-03', 'neutered', '', '', '', true);
+INSERT INTO visits VALUES (4, 11, '2015-08-09', 'spayed', '', '', '', false);
+
+INSERT INTO supplies VALUES (1, 'dog food','feeds dogs' , 2, 0);
+INSERT INTO supplies VALUES (2, 'cat food','feeds cats' , 1, 0);
+INSERT INTO supplies VALUES (3, 'fish food','feeds fish' , 6, 5);

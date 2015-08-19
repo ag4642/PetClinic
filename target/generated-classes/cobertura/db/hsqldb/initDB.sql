@@ -5,6 +5,7 @@ DROP TABLE visits IF EXISTS;
 DROP TABLE pets IF EXISTS;
 DROP TABLE types IF EXISTS;
 DROP TABLE owners IF EXISTS;
+DROP TABLE supplies IF EXISTS;
 
 
 CREATE TABLE vets (
@@ -58,7 +59,18 @@ CREATE TABLE visits (
   id          INTEGER IDENTITY PRIMARY KEY,
   pet_id      INTEGER NOT NULL,
   visit_date  DATE,
-  description VARCHAR(255)
-);
+  description VARCHAR(255),
+  vet		  VARCHAR(30),
+  vet2		  VARCHAR(30),
+  diagnosis  VARCHAR(255),
+  paid		  BOOLEAN DEFAULT FALSE
+   );
 ALTER TABLE visits ADD CONSTRAINT fk_visits_pets FOREIGN KEY (pet_id) REFERENCES pets (id);
 CREATE INDEX visits_pet_id ON visits (pet_id);
+CREATE TABLE supplies (
+  id          INTEGER IDENTITY PRIMARY KEY,
+  item        VARCHAR(255),
+  purpose     VARCHAR(255), 
+  quantity    INTEGER NOT NULL, 
+  ordered     INTEGER
+   );

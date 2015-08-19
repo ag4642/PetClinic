@@ -17,9 +17,7 @@ package org.springframework.samples.petclinic.repository.jdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +37,6 @@ import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
-import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.PetRepository;
@@ -66,9 +63,6 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 
 	private SimpleJdbcInsert insertVisit;
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	private PetRepository petRepository;
-	private ClinicService clinicService;
-	private JdbcPetRepositoryImpl JdbcPetRepositoryImpl;
 
 	@Autowired
 	public JdbcVisitRepositoryImpl(DataSource dataSource) {

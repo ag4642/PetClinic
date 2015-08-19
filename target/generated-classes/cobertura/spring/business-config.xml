@@ -68,12 +68,12 @@
         <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
               p:dataSource-ref="dataSource"/>
 
-        <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" autowire="constructor">
             <constructor-arg ref="dataSource"/>
         </bean>
 
         <bean id="namedParameterJdbcTemplate"
-              class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+              class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" autowire="constructor">
             <constructor-arg ref="dataSource"/>
         </bean>
 

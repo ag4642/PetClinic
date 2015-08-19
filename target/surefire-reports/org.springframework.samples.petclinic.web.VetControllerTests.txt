@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.springframework.samples.petclinic.web.VetControllerTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.067 sec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.935 sec

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="10" failures="0" name="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" time="0.295" errors="0" skipped="0">
+<testsuite tests="23" failures="0" name="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" time="0.347" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_45\jre\bin"/>
     <property name="java.vm.version" value="25.45-b02"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\sb\petclinic"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\garga\Documents\GitHub\PetClinic"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\sb\petclinic"/>
+    <property name="user.dir" value="C:\Users\garga\Documents\GitHub\PetClinic"/>
     <property name="java.runtime.version" value="1.8.0_45-b15"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_45\jre\lib\endorsed"/>
@@ -27,10 +27,10 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 7"/>
-    <property name="net.sourceforge.cobertura.datafile" value="C:\sb\petclinic\target\cobertura\cobertura.ser"/>
+    <property name="net.sourceforge.cobertura.datafile" value="C:\Users\garga\Documents\GitHub\PetClinic\target\cobertura\cobertura.ser"/>
     <property name="classworlds.conf" value="C:\Program Files\apache-maven-3.3.3-bin\apache-maven-3.3.3\bin\..\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_45\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;c:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Subversion\bin;C:\Program Files\apache-maven-3.3.3-bin\apache-maven-3.3.3\bin;C:\Program Files\Java\jdk1.8.0_51;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_45\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;c:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Subversion\bin;C:\Program Files\apache-maven-3.3.3-bin\apache-maven-3.3.3\bin;C:\Program Files\Java\jdk1.8.0_51;C:\Program Files\TortoiseGit\bin;C:\Users\garga\AppData\Local\GitHub\PortableGit_c2ba306e536fdf878271f7fe636a147ff37326ad\bin;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -60,19 +60,32 @@
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="project.build.outputDirectory" value="C:\sb\petclinic\target\generated-classes\cobertura"/>
+    <property name="project.build.outputDirectory" value="C:\Users\garga\Documents\GitHub\PetClinic\target\generated-classes\cobertura"/>
     <property name="sun.stdout.encoding" value="cp437"/>
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindVets" time="0.174"/>
-  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindOwnersByLastName" time="0.034"/>
-  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldAddNewVisitForPet" time="0.026"/>
-  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldUpdateOwner" time="0.028"/>
-  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldInsertPetIntoDatabaseAndGenerateId" time="0.017"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindVisitWithCorrectId" time="0.069"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindVets" time="0.109"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindOwnersByLastName" time="0.022"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindVisits" time="0.019"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldAddSupply" time="0.019"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindPet" time="0.009"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldDiagnosePet" time="0.008"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindSupplyWithCorrectId" time="0.001"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldAddNewVisitForPet" time="0.008"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldUpdateOwner" time="0.024"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldInsertPetIntoDatabaseAndGenerateId" time="0.015"/>
   <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldInsertOwner" time="0.005"/>
-  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindSingleOwnerWithPet" time="0.004"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="markPaid" time="0.005"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindSupplies" time="0.007"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindSingleOwnerWithPet" time="0.003"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldEditSupply" time="0.003"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindPetNull" time="0"/>
   <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldUpdatePetName" time="0.004"/>
-  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindAllPetTypes" time="0.001"/>
-  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindPetWithCorrectId" time="0.002"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindAllPetTypes" time="0.003"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="OwnerToString" time="0.001"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="unassignVet" time="0.005"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="billOwner" time="0.004"/>
+  <testcase classname="org.springframework.samples.petclinic.service.ClinicServiceJpaTests" name="shouldFindPetWithCorrectId" time="0.004"/>
 </testsuite>
