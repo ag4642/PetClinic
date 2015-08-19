@@ -1,0 +1,18 @@
+package org.springframework.samples.petclinic.repository.jdbc;
+
+import org.springframework.samples.petclinic.model.Visit;
+
+public class JdbcVisit extends Visit {
+	private int typeId;
+
+	private int petId;
+
+	public void setPetId(int petId) {
+		this.petId = petId;
+	}
+
+	public int getPetId() {
+		return this.petId;
+	}
+
+}

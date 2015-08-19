@@ -1,0 +1,29 @@
+package org.springframework.samples.petclinic.repository.jdbc;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+
+import org.joda.time.DateTime;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.samples.petclinic.model.Pet;
+import org.springframework.samples.petclinic.model.Vet;
+
+public class JdbcVisitRowMapper extends BeanPropertyRowMapper<JdbcVisit> {
+	@Override
+	public JdbcVisit mapRow(ResultSet rs, int rownum) throws SQLException {
+		JdbcVisit visit = new JdbcVisit();
+		visit.setId(rs.getInt("id"));
+		Pet pet = new Pet();
+		pet.setId(rs.getInt("pet_id"));
+		visit.setPet(pet);
+		java.sql.Date dates = rs.getDate("visit_date");
+		DateTime date = new DateTime(dates);
+		visit.setDate(date);
+		visit.setDescription("description");
+		Vet vet = new Vet();
+		vet.setFirstName(rs.getString("vet"));
+		visit.setVet(vet.getFirstName());
+		return visit;
+	}
+}

@@ -215,10 +215,10 @@ public abstract class AbstractClinicServiceTests {
 		assertThat(visit.getDate().dayOfYear().roundFloorCopy()).isEqualTo(dt);
 		assertThat(visit.getDescription()).isEqualTo("neutered");
 		assertThat(visit.getPet().getId()).isEqualTo(9);
-		// assertThat(visit.getPet().getType().getName()).isEqualTo("bird");
+		assertThat(visit.getPet().getType().getName()).isEqualTo("bird");
 		assertThat(visit.getVet()).isEqualTo("");
-		// assertThat(visit.getPet().getName()).isEqualTo("Lucky");
-		// assertThat(visit.getPet().getOwner().getFirstName()).isEqualTo("Jeff");
+		assertThat(visit.getPet().getName()).isEqualTo("Lucky");
+		assertThat(visit.getPet().getOwner().getFirstName()).isEqualTo("Jeff");
 		assertThat(visit.getDiagnosis()).isEqualTo("");
 	}
 

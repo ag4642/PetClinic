@@ -1,0 +1,77 @@
+
+
+
+<!DOCTYPE html>
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
+
+<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+
+<%@ taglib prefix="datatables"
+	uri="http://github.com/dandelion/datatables"%>
+
+<html lang="en">
+
+<jsp:include page="../fragments/staticFiles.jsp" />
+<body>
+	<div class="container">
+		<jsp:include page="../fragments/bodyHeader.jsp" />
+		<h2>Pets</h2>
+		<datatables:table id="pets" data="${pets.petList}" row="pet"
+			theme="bootstrap2" cssClass="table table-striped" pageable="false"
+			info="false">
+			<datatables:column title="Pet Name">
+				<c:out value="${pet.name}" />
+			</datatables:column>
+			<datatables:column title="Pet Type">
+				<c:out value="${pet.type.name}" />
+			</datatables:column>
+			<datatables:column title="Owner">
+				<c:out value="${pet.owner.firstName} ${pet.owner.lastName}" />
+			</datatables:column>
+			<datatables:column title="Description">
+				<c:out value="${pet.owner.firstName} ${pet.owner.lastName}" />
+			</datatables:column>
+			<datatables:column title="Diagnosis">
+				<c:out value="${pet.diagnosis}" />
+				<c:choose>
+					<c:when test="${pet.diagnosis!=''}">
+						<spring:url value="/owners/{ownerId}/pets/{petId}/edit"
+							var="petUrl">
+							<spring:param name="ownerId" value="${pet.owner.id}" />
+							<spring:param name="petId" value="${pet.id}" />
+						</spring:url>
+						<a href="${fn:escapeXml(petUrl)}">Update</a>
+						<spring:url value="/owners/{ownerId}/pets/{petId}/edit"
+							var="petUrl">
+							<spring:param name="ownerId" value="${pet.owner.id}" />
+							<spring:param name="petId" value="${pet.id}" />
+						</spring:url>
+						<a onClick="$('#myimage').show()">Flag</a>
+						<spring:url value="/resources/images/myimage.png" var="banner" />
+						<a onClick="$('#myimage').hide()">Unflag</a>
+						<spring:url value="/resources/images/myimage.png" var="banner" />
+						<img id="myimage" src="${banner}" style="display: none;"
+							width="20" height="20" />
+					</c:when>
+					<c:otherwise>
+						<spring:url value="/owners/{ownerId}/pets/{petId}/edit"
+							var="petUrl">
+							<spring:param name="ownerId" value="${pet.owner.id}" />
+							<spring:param name="petId" value="${pet.id}" />
+						</spring:url>
+						<a href="${fn:escapeXml(petUrl)}">Add</a>
+					</c:otherwise>
+				</c:choose>
+			</datatables:column>
+		</datatables:table>
+
+		<jsp:include page="../fragments/footer.jsp" />
+	</div>
+</body>
+</html>
