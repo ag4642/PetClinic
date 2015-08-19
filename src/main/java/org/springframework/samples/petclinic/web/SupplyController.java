@@ -1,0 +1,102 @@
+package org.springframework.samples.petclinic.web;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Supply;
+import org.springframework.samples.petclinic.service.ClinicService;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+
+@Controller
+@SessionAttributes("supplies")
+public class SupplyController {
+
+	private final ClinicService clinicService;
+
+	@Autowired
+	public SupplyController(ClinicService clinicService) {
+		this.clinicService = clinicService;
+	}
+
+	@ModelAttribute("supplies")
+	public Supply loadSupply(@PathVariable("supplyId") int supplyId) {
+		Supply supply = this.clinicService.findSupplyById(supplyId);
+		return supply;
+	}
+
+	@RequestMapping(value = "/supplies/{supplyId}/edit", method = RequestMethod.GET)
+	public String initEditSupplyForm(@PathVariable("supplyId") int supplyId, Map<String, Object> model) {
+		model.put("supplies", this.clinicService.findSupplyById(supplyId));
+		return "supplies/createOrUpdateSupplyForm";
+	}
+
+	@RequestMapping(value = "/supplies/{supplyId}/edit", method = { RequestMethod.PUT, RequestMethod.POST })
+	public String processEditSupplyForm(@ModelAttribute("supplies") Supply supply, BindingResult result,
+			SessionStatus status) {
+		new SupplyValidator().validate(supply, result);
+		if (result.hasErrors()) {
+			return "supplies/createOrUpdateSupplyForm";
+		} else {
+			this.clinicService.saveSupply(supply);
+			status.setComplete();
+			return "redirect:/supplies.html";
+		}
+	}
+
+	@RequestMapping(value = "/supplies/{supplyId}/order", method = RequestMethod.GET)
+	public String initOrderSupplyForm(@PathVariable("supplyId") int supplyId, Map<String, Object> model) {
+		model.put("supplies", this.clinicService.findSupplyById(supplyId));
+		return "supplies/createOrUpdateSupplyForm";
+	}
+
+	@RequestMapping(value = "/supplies/{supplyId}/order", method = { RequestMethod.PUT, RequestMethod.POST })
+	public String processOrderSupplyForm(@ModelAttribute("supplies") Supply supply, BindingResult result,
+			SessionStatus status) {
+		new SupplyValidator().validate(supply, result);
+		if (result.hasErrors()) {
+			return "supplies/createOrUpdateSupplyForm";
+		} else {
+			this.clinicService.saveSupply(supply);
+			status.setComplete();
+			return "redirect:/supplies.html";
+		}
+	}
+
+	@RequestMapping(value = "/supplies/{supplyId}/delivered", method = RequestMethod.GET)
+	public String initDeliveredSupplyForm(@PathVariable("supplyId") int supplyId, Map<String, Object> model) {
+		Supply supply = this.clinicService.findSupplyById(supplyId);
+		supply.setQuantity(supply.getQuantity() + supply.getOrdered());
+		supply.setOrdered(0);
+		this.clinicService.saveSupply(supply);
+		return "redirect:/supplies.html";
+	}
+
+	@RequestMapping(value = "/supplies/{supplyId}/new", method = RequestMethod.GET)
+	public String initNewSupplyForm(@PathVariable("supplyId") int supplyId, Map<String, Object> model) {
+		Supply supply = new Supply();
+		model.put("supplies", supply);
+		return "supplies/createOrUpdateSupplyForm";
+	}
+
+	// Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm
+	// is called
+	@RequestMapping(value = "/supplies/{supplyId}/new", method = { RequestMethod.POST, RequestMethod.PUT })
+	public String processNewSupplyForm(@ModelAttribute("supplies") Supply supply, BindingResult result,
+			SessionStatus status) {
+		new SupplyValidator().validate(supply, result);
+		if (result.hasErrors()) {
+			return "supplies/createOrUpdateSupplyForm";
+		} else {
+			this.clinicService.saveSupply(supply);
+			status.setComplete();
+			return "redirect:/supplies.html";
+		}
+	}
+}
