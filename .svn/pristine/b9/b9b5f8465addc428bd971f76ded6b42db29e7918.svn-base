@@ -127,24 +127,36 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 
 	@Override
 	public Collection<Visit> findAllVisits() throws DataAccessException {
-		final List<Owner> owners = this.jdbcTemplate.query("SELECT id, first_name, last_name, telephone FROM owners",
-				BeanPropertyRowMapper.newInstance(Owner.class));
+		final List<Pet> pets = this.jdbcTemplate.query("SELECT id, name, owner_id, type_id FROM pets",
+				BeanPropertyRowMapper.newInstance(Pet.class));
 		final List<PetType> PetTypes = this.jdbcTemplate.query("SELECT id, name FROM types",
 				BeanPropertyRowMapper.newInstance(PetType.class));
-		final List<Pet> pets = this.jdbcTemplate.query("SELECT id, name, owner_id, type_id FROM pets",
-				new BeanPropertyRowMapper<Pet>() {
-					@Override
-					public Pet mapRow(ResultSet rs, int row) throws SQLException {
-						Pet pet = new Pet();
-						pet.setId(rs.getInt("id"));
-						pet.setName(rs.getString("name"));
-						Owner owner = EntityUtils.getById(owners, Owner.class, rs.getInt("owner_id"));
-						pet.setOwner(owner);
-						PetType pt = EntityUtils.getById(PetTypes, PetType.class, rs.getInt("type_id"));
-						pet.setType(pt);
-						return pet;
-					}
-				});
+		final List<Owner> owners = this.jdbcTemplate.query("SELECT id, first_name, last_name, telephone FROM owners",
+				BeanPropertyRowMapper.newInstance(Owner.class));
+		for (Pet pet : pets) {
+			final List<Integer> ownerids = this.jdbcTemplate.query("SELECT owner_id FROM pets WHERE id=?",
+					new BeanPropertyRowMapper<Integer>() {
+						@Override
+						public Integer mapRow(ResultSet rs, int row) throws SQLException {
+							return Integer.valueOf(rs.getInt(1));
+						}
+					}, pet.getId().intValue());
+			for (int ownerid : ownerids) {
+				Owner owner = EntityUtils.getById(owners, Owner.class, ownerid);
+				pet.setOwner(owner);
+			}
+			final List<Integer> pettypes = this.jdbcTemplate.query("SELECT type_id FROM pets WHERE id=?",
+					new BeanPropertyRowMapper<Integer>() {
+						@Override
+						public Integer mapRow(ResultSet rs, int row) throws SQLException {
+							return Integer.valueOf(rs.getInt(1));
+						}
+					}, pet.getId().intValue());
+			for (int pettype : pettypes) {
+				PetType pt = EntityUtils.getById(PetTypes, PetType.class, pettype);
+				pet.setType(pt);
+			}
+		}
 
 		final List<Visit> visits = this.jdbcTemplate.query(
 				"SELECT id, pet_id, visit_date, description, vet, vet2, diagnosis, paid FROM visits",
@@ -175,24 +187,6 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 
 	@Override
 	public Visit findVisitById(int id) {
-		final List<Owner> owners = this.jdbcTemplate.query("SELECT id, first_name, last_name, telephone FROM owners",
-				BeanPropertyRowMapper.newInstance(Owner.class));
-		final List<PetType> PetTypes = this.jdbcTemplate.query("SELECT id, name FROM types",
-				BeanPropertyRowMapper.newInstance(PetType.class));
-		final List<Pet> pets = this.jdbcTemplate.query("SELECT id, name, owner_id, type_id FROM pets",
-				new BeanPropertyRowMapper<Pet>() {
-					@Override
-					public Pet mapRow(ResultSet rs, int row) throws SQLException {
-						Pet pet = new Pet();
-						pet.setId(rs.getInt("id"));
-						pet.setName(rs.getString("name"));
-						Owner owner = EntityUtils.getById(owners, Owner.class, rs.getInt("owner_id"));
-						pet.setOwner(owner);
-						PetType pt = EntityUtils.getById(PetTypes, PetType.class, rs.getInt("type_id"));
-						pet.setType(pt);
-						return pet;
-					}
-				});
 		Visit visit;
 		try {
 			Map<String, Object> params = new HashMap<String, Object>();
@@ -204,8 +198,8 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 						public Visit mapRow(ResultSet rs, int row) throws SQLException {
 							Visit visit = new Visit();
 							visit.setId(rs.getInt("id"));
-							Pet pet = EntityUtils.getById(pets, Pet.class, rs.getInt("pet_id"));
-							visit.setPet(pet);
+							Pet pet = new Pet();
+							pet.setId(rs.getInt("pet_id"));
 							visit.setPet(pet);
 							java.sql.Date dates = rs.getDate("visit_date");
 							DateTime date = new DateTime(dates);

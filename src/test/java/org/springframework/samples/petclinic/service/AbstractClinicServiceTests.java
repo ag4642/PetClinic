@@ -252,6 +252,7 @@ public abstract class AbstractClinicServiceTests {
 	public void shouldFindVisitWithCorrectId() {
 		Visit visit = this.clinicService.findVisitById(2);
 		assertThat(visit.getDescription()).isEqualTo("rabies shot");
+		assertThat(visit.getPet().getName()).isEqualTo("Sly");
 	}
 
 	@Test
