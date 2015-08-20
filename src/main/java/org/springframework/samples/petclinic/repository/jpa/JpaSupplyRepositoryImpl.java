@@ -10,7 +10,11 @@ import org.springframework.samples.petclinic.model.Supply;
 import org.springframework.samples.petclinic.repository.SupplyRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
+/**
+ * 
+ * @author Ashvarya Garg
+ *
+ */
 @Repository
 public class JpaSupplyRepositoryImpl implements SupplyRepository {
 

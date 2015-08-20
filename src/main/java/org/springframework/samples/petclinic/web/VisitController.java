@@ -40,6 +40,7 @@ import org.springframework.web.bind.support.SessionStatus;
  * @author Ken Krebs
  * @author Arjen Poutsma
  * @author Michael Isvy
+ * @author Ashvarya Garg
  */
 @Controller
 @SessionAttributes("visits")

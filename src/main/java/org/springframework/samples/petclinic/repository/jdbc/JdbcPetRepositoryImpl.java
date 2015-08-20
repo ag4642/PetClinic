@@ -25,7 +25,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -58,8 +57,6 @@ public class JdbcPetRepositoryImpl implements PetRepository {
 	private OwnerRepository ownerRepository;
 
 	private VisitRepository visitRepository;
-
-	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
 	public JdbcPetRepositoryImpl(DataSource dataSource, OwnerRepository ownerRepository,

@@ -3,7 +3,11 @@ package org.springframework.samples.petclinic.web;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
-
+/**
+ * 
+ * @author Ashvarya Garg
+ *
+ */
 public class VisitValidator {
 	public void validate(Visit visit, Errors errors) {
 		String description = visit.getDescription();

@@ -33,6 +33,7 @@ import org.springframework.samples.petclinic.model.Visit;
  * @author Juergen Hoeller
  * @author Sam Brannen
  * @author Michael Isvy
+ * @author Ashvarya Garg
  */
 public interface VisitRepository {
 

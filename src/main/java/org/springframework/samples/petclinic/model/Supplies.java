@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
-
+/**
+* @author Ashvarya Garg
+*/
 public class Supplies {
 	private List<Supply> supplies;
 

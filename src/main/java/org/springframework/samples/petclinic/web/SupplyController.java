@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-
+/**
+ * 
+ * @author Ashvarya Garg
+ *
+ */
 @Controller
 @SessionAttributes("supplies")
 public class SupplyController {

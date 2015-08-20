@@ -6,7 +6,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
-
+/**
+* @author Ashvarya Garg
+*/
 @Entity
 @Table(name = "supplies")
 public class Supply extends BaseEntity {

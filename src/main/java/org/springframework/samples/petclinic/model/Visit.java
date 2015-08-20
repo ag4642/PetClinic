@@ -30,6 +30,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * Simple JavaBean domain object representing a visit.
  *
  * @author Ken Krebs
+ * *author Ashvarya Garg
  */
 @Entity
 @Table(name = "visits")

@@ -40,6 +40,7 @@ import org.springframework.core.style.ToStringCreator;
  * @author Juergen Hoeller
  * @author Sam Brannen
  * @author Michael Isvy
+ * @author Ashvarya Garg
  */
 @Entity
 @Table(name = "owners")

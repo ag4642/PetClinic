@@ -7,7 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.samples.petclinic.model.Supply;
 import org.springframework.samples.petclinic.repository.SupplyRepository;
-
+/**
+ * 
+ * @author Ashvarya Garg
+ *
+ */
 public interface SpringDataSupplyRepository extends SupplyRepository, Repository<Supply, Integer> {
 
 	@Override

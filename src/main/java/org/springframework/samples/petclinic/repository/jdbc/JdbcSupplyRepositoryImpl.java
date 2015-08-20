@@ -1,7 +1,5 @@
 package org.springframework.samples.petclinic.repository.jdbc;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -20,15 +18,17 @@ import org.springframework.samples.petclinic.model.Supply;
 import org.springframework.samples.petclinic.repository.SupplyRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ * 
+ * @author Ashvarya Garg
+ *
+ */
 @Repository
 public class JdbcSupplyRepositoryImpl implements SupplyRepository {
 
 	private JdbcTemplate jdbcTemplate;
-
 	private SimpleJdbcInsert insertSupply;
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
-	private SupplyRepository supplyRepository;
 
 	@Autowired
 	public JdbcSupplyRepositoryImpl(DataSource dataSource) {
@@ -46,18 +46,8 @@ public class JdbcSupplyRepositoryImpl implements SupplyRepository {
 	@Override
 	public Collection<Supply> findAllSupplies() throws DataAccessException {
 		final List<Supply> supplies = this.jdbcTemplate.query(
-				"SELECT id, item, purpose, quantity, ordered FROM supplies", new BeanPropertyRowMapper<Supply>() {
-					@Override
-					public Supply mapRow(ResultSet rs, int row) throws SQLException {
-						Supply supply = new Supply();
-						supply.setId(rs.getInt("id"));
-						supply.setItem(rs.getString("item"));
-						supply.setPurpose(rs.getString("purpose"));
-						supply.setQuantity(rs.getInt("quantity"));
-						supply.setOrdered(rs.getInt("ordered"));
-						return supply;
-					}
-				});
+				"SELECT id, item, purpose, quantity, ordered FROM supplies",
+				BeanPropertyRowMapper.newInstance(Supply.class));
 		return supplies;
 	}
 
@@ -67,18 +57,7 @@ public class JdbcSupplyRepositoryImpl implements SupplyRepository {
 		params.put("id", id);
 		Supply supply = this.namedParameterJdbcTemplate.queryForObject(
 				"SELECT id, item, purpose, quantity, ordered FROM supplies WHERE id=:id", params,
-				new BeanPropertyRowMapper<Supply>() {
-					@Override
-					public Supply mapRow(ResultSet rs, int row) throws SQLException {
-						Supply supply = new Supply();
-						supply.setId(rs.getInt("id"));
-						supply.setItem(rs.getString("item"));
-						supply.setPurpose(rs.getString("purpose"));
-						supply.setQuantity(rs.getInt("quantity"));
-						supply.setOrdered(rs.getInt("ordered"));
-						return supply;
-					}
-				});
+				BeanPropertyRowMapper.newInstance(Supply.class));
 		return supply;
 	}
 

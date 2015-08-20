@@ -68,6 +68,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Juergen Hoeller
  * @author Sam Brannen
  * @author Michael Isvy
+ * @author Ashvarya Garg
  */
 public abstract class AbstractClinicServiceTests {
 
@@ -229,6 +230,7 @@ public abstract class AbstractClinicServiceTests {
 		assertThat(supply.getItem()).isEqualTo("fish food");
 		assertThat(supply.getPurpose()).isEqualTo("feeds fish");
 		assertThat(supply.getQuantity()).isEqualTo(6);
+		assertThat(supply.getOrdered()).isEqualTo(5);
 	}
 
 	@Test

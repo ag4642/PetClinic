@@ -30,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Spring Data JPA specialization of the {@link VisitRepository} interface
  *
  * @author Michael Isvy
+ * @author Ashvarya Garg
  * @since 15.1.2013
  */
 

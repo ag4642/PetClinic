@@ -6,7 +6,11 @@ import org.joda.time.DateTime;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
-
+/**
+ * 
+ * @author Ashvarya Garg
+ *
+ */
 public class VisitValidator2 {
 	public void validate(Visit visit, Errors errors) {
 		String description = visit.getDescription();

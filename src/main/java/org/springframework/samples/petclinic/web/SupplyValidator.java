@@ -3,7 +3,11 @@ package org.springframework.samples.petclinic.web;
 import org.springframework.samples.petclinic.model.Supply;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
-
+/**
+ * 
+ * @author Ashvarya Garg
+ *
+ */
 public class SupplyValidator {
 	public void validate(Supply supply, Errors errors) {
 		String item = supply.getItem();

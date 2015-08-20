@@ -39,9 +39,7 @@ import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
-import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
-import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.samples.petclinic.util.EntityUtils;
 import org.springframework.stereotype.Repository;
 
@@ -55,6 +53,7 @@ import org.springframework.stereotype.Repository;
  * @author Thomas Risberg
  * @author Mark Fisher
  * @author Michael Isvy
+ * @author Ashvarya Garg
  */
 @Repository
 public class JdbcVisitRepositoryImpl implements VisitRepository {
@@ -97,6 +96,7 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 
 	@Override
 	public List<Visit> findByPetId(Integer petId) {
+
 		final List<Visit> visits = this.jdbcTemplate.query(
 				"SELECT id, visit_date, description,vet, vet2, diagnosis, paid FROM visits WHERE pet_id=?",
 				new BeanPropertyRowMapper<Visit>() {
@@ -182,7 +182,6 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 						return visit;
 					}
 				});
-
 		return visits;
 	}
 
